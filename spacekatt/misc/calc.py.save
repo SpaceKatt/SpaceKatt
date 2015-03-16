@@ -1,0 +1,12 @@
+
+from __future__ import division
+from math import *
+from sympy import Rational
+
+def try(x):
+	
+
+print try(1)	
+d = 10 * (try(0) / try(30))
+
+print d
