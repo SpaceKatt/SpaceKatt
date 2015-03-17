@@ -24,13 +24,16 @@ def intro(start):
 	else:
 		what(list, intro)
 	
-def what(options, room):
-	print "\nI have no idea what you mean, try: \n"
+def what(options, room, *args):
+	if len(args) == 0:
+		print "\nI have no idea what you meant, try: \n"
+	else:
+		print "I have no idea what you meant, next time try: \n"
 	a = 0
 	for o in options:
 		a += 1
 		print "%i: %s" % (a, o) 
-	if room == intro:
+	if room == intro or room == final:
 		room(1)
 	else:
 		room()
@@ -50,7 +53,8 @@ def antechamber():
 		elif 'south' in dir:
 			skyway()
 		else:
-			what(opt, antechamber)
+			print "\nYou start yelling in confusion and land..."
+			print "Also,", what(opt, antechamber, 1)
 	elif action == 'give' or action == 'up' or action == 'give up':
 		dead("Your lack of motivation is disturbing,")
 	else:
@@ -62,6 +66,55 @@ def tundra():
 
 def skyway():
 	print "\nHmmm..."
-	print "You are confused as to how you're flying in a computer."
+	print "You are confused as to how you're flying inside a computer."
+	a = raw_input("\nDo you continue flying? (y/n) --> ")
+	if "y" in a or "Y" in a:
+		b = "As you begin to ascend to the heavens,\n"
+		c = '	you fly too close to the sun.\n'
+		d = 'The wax on your wings melts off,\n'
+		e = '	and you begin to fall,'
+		f = b + c + d + e
+		dead(f)
+	elif "n" in a or 'N' in a:
+		final(0)		
+	else:
+		hmm = ['n -or- N', 'y -or- Y']
+		what(hmm, skyway)
+
+def judgement(a, b):
+	z = str(a)
+	n = str(b)
+	c = list(set(z) & set(n))
+	return len(c)
+
+def final(x):
+	if x == 0:
+		print """\nYou land safely. Without the need for another step,
+	a guru steps out of his shack and gives you a strange offer:"""
+		guru_happy = False
+	elif x != "not winning" and x != 0:
+		guru_happy = True
+		print "\nYou are wise beyond your words..."	
+	else:
+		print "\nYoung one, this is no joke... Do you know what a number is?"
+		guru_happy = False
+	numbe = [2, 3, 5, 6]
+	while guru_happy == False:
+		print "\nTell me your favorite number so I can judge your soul."
+		try:
+			a = int(raw_input("\n->>->> "))
+		except ValueError:
+			final("not winning")
+		lista = judgement(a, numbe)
+		if lista > 0:
+			final(a)
+		else:
+			print "\nThink long and hard about what you soul means to you..."
+	win(x)
+
+def win(a):
+	print "\nWinning text"
+	print "Your score: %d" % (a%4)
+	exit(0)
 
 intro(0)
