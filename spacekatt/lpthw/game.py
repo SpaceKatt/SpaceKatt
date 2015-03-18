@@ -88,19 +88,18 @@ def judgement(a, b):
 	return len(c)
 
 def final(x):
+	guru_happy = False
 	if x == 0:
 		print """\nYou land safely. Without the need for another step,
-	a guru steps out of his shack and gives you a strange offer:"""
-		guru_happy = False
+	a guru steps out of his shack and gives you a strange offer:\n"""
 	elif x != "not winning" and x != 0:
 		guru_happy = True
 		print "\nYou are wise beyond your words..."	
 	else:
-		print "\nYoung one, this is no joke... Do you know what a number is?"
-		guru_happy = False
+		print "\n'Young one, this is no joke... Do you know what a number is?'"
 	numbe = [2, 3, 5, 6]
 	while guru_happy == False:
-		print "\nTell me your favorite number so I can judge your soul."
+		print '"Tell me your favorite number so I can judge your soul..."'
 		try:
 			a = int(raw_input("\n->>->> "))
 		except ValueError:
@@ -109,12 +108,13 @@ def final(x):
 		if lista > 0:
 			final(a)
 		else:
-			print "\nThink long and hard about what you soul means to you..."
+			print '\n"Think long and hard about what your soul means to you..."'
 	win(x)
 
 def win(a):
-	print "\nWinning text"
-	print "Your score: %d" % (a%4)
+	c = (a + 1) * 4
+	print "\nWinning text!"
+	print "Your score: %d/10" % (c%11)
 	exit(0)
 
 intro(0)

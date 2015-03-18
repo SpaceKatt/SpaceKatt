@@ -14,11 +14,9 @@ while munch == False:
 	if n != False:
 		print "\nTime to cook!"
 		nlist = str(n)
-		print "\nnlist = ", nlist
 		for a in nlist:
-			print a
 			lunch.append(int(a))
-			print lunch
+		print "We made: ", lunch
 		print "We want to eat: ", numbe
 	else:
 		print "\nThis isn't an integer... Retry"
@@ -30,3 +28,4 @@ while munch == False:
 		print "\nYour lunch cannot be munched"
 		print "Pick a new lunch\n"
 	
+#change so duplicate numbers aren't cut
