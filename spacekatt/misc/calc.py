@@ -2,12 +2,12 @@ from __future__ import division
 from math import *
 from sympy import Rational
 
-def y(t):
-	a = (-1) * (e ** t) * (t ** 2 - 3 * t + 3)
-	return a
 
-print e
-print y(0)
-b = y(0) - y(1)
-print b, "\n"
-print 3 - e
+def y(a):
+	b = 0
+	for i in range(1, 8 + 1):
+		s = i / (1 + sqrt(i))
+		b += s
+		print b
+
+y(5000)
