@@ -12,10 +12,31 @@ def mals(drops, pH):
 	return moles
 
 def process_data(list):
+	data = []
 	for n in range(0, len(list)):
-		thing = '{0}: {1:2.2e} moles,'
-		z = thing.format(int(n+1), mals(*list[n]))
+		thing = '{0}: {1:2.1e} moles, delta-pH = {c:2.3}'
 		x = list[n][1]
-		print z, 'pH = %.2f' % x
+		z = thing.format(int(n+1), mals(*list[n]), c=x)
+		data.append(z)
+	return data
 
-process_data(droph)
+#print process_data(droph)
+
+def specify(list, which):
+	specific = []
+	m = process_data(list)
+	for n in which:
+		specific.append(m[n - 1])
+	return specific
+
+def printl(list, ra):
+	listb = specify(list, ra)
+	for n in range(0, len(listb)):
+		print listb[n]
+
+def num(a, b):
+	return range(a, b+1)
+
+#print specify(process_data(droph), range(7, 9)) 
+
+printl(droph, num(7, 8))
