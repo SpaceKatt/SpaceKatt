@@ -4,6 +4,17 @@ from sympy import *
 
 x = symbols('x')
 
+def factz(n):
+	if n != 0:
+		z = 1
+		facts = [z]
+		for m in range(1, n+1):
+			z = z * m
+			facts.append(z)
+		return facts
+	else:
+		return 1
+
 def ndiff(fx, n):
 	terms = [fx]
 	if n != 0:
@@ -31,3 +42,5 @@ m = funn()
 eq = x ** 4
 print ndiff(eq, 4)
 #print whaha(sin(x), 2)
+
+print factz(5)

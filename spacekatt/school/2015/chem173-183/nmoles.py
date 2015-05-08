@@ -39,4 +39,4 @@ def num(a, b):
 
 #print specify(process_data(droph), range(7, 9)) 
 
-printl(droph, num(7, 8))
+printl(droph, num(1, 10))
