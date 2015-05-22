@@ -1,5 +1,4 @@
 class Food:
-
 	def __init__(self, x, y, amount=10):
 		self.x = x
 		self.y = y
@@ -20,7 +19,7 @@ class Ant:
 	def __init__(self, colony, x, y):
 		self.colony = colony
 		self.x = x
-		slef.y = y
+		self.y = y
 		self.v = [0, 0]
 		self.food = False
 		self.trail = []
@@ -77,3 +76,52 @@ def hoard(ant, m=0.5):
     if distance(ant, ant.colony) < 5:
         ant.food = False
         ant.colony.food += 1
+
+def forage(ant, speed=1):
+    if ant.food is False:
+        roam(ant); track(ant); harvest(ant)
+    else:
+        hoard(ant)
+    ant.v[0] = max(-speed, min(ant.v[0], speed))
+    ant.v[1] = max(-speed, min(ant.v[1], speed))
+    ant.x += ant.v[0]
+    ant.y += ant.v[1]
+
+class Colony:
+
+    def __init__(self, x, y, radius=200, size=30):
+        self.x = x
+        self.y = y
+        self.radius = radius
+        self.foodsources = []
+        self.food = 0
+        self.ants = [Ant(self, x, y) for i in range(size)]
+
+    def update(self, speed=1):
+        for ant in self.ants:
+            for pherormone in ant.trail:
+                pheromone.evaporate()
+                if pheromone.stength == 0:
+                    ant.trail.remove(pheromone)
+                forage(ant, speed)
+
+#from nodebox.graphics import *
+
+colony = Colony(200, 200, size=30)
+colony.foodsources = [Food(random() * 400, random() * 400) for i in range(10)]
+
+#Must find a way to make this work, or find something that has a similar 
+#function for the raspberry pi
+
+#def draw(canvas):
+#    canvas.clear()
+#    for food in colony.foodsources:
+#        r = food.amount
+#        ellipse(food.x-r, food.y-r, r*2, r*2)
+#    for ant in colony.ants:
+#        ellipse(ant.x-1, ant.y-1, 2, 2)
+#    colony.update()
+
+#canvas.size = 400, 400
+#canvas.draw = draw
+#canvas.run()
