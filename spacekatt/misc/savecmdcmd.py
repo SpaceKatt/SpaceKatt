@@ -8,7 +8,7 @@ To use this lil'tidder to save instructions on how to use this lil'tidder:
     >python sav* cmd* 'python sav* cmd* ["cmd"]'
 
 If the use wants a list of neeto commands:
-    Use list in place of 'cmd_to_save'
+    Use list in place of ["cmd"]
 """
 
 sfile = str(fileIO)
@@ -21,7 +21,7 @@ with open(sfile, 'r') as o:
 	    break
 	else:
             result = line.strip()
-	    result = result[1:-1]
+            result = result[1:-1]
             cmdlist.append(result)
 
 def read_file(file):
@@ -39,8 +39,6 @@ def saviour(cmd):
 if cmd == 'list':
     for r in range(len(cmdlist)):
 	print cmdlist[r]
-elif type(cmd) != str:
-    print '\n', 'ERROR: Command is not a string, cannot add to cmd list'
 elif cmd in cmdlist:
     print '\n', 'ERROR: Command already exists :3'
 else:
