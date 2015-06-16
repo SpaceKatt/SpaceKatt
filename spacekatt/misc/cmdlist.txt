@@ -1,0 +1,3 @@
+'ls -a'
+'python sav* cmd* ["cmd"]'
+'find . -name \*.py -exec grep -q 'def' '()' \; -print'
